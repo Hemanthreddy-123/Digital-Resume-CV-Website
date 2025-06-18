@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mukkamalla Hemanth Reddy - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            color: #2d2d2d;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a00e0, #00c4b4);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.4em;
+            opacity: 0.9;
+        }
+
+        .download-btn, .print-btn {
+            display: inline-block;
+            margin: 15px 10px;
+            padding: 12px 25px;
+            background-color: #ff4b5c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .download-btn:hover, .print-btn:hover {
+            background-color: #e03c4d;
+            transform: scale(1.05);
+        }
+
+        .download-count {
+            font-size: 0.9em;
+            margin-top: 10px;
+            color: #e0e0e0;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dark-mode .theme-toggle {
+            background-color: #333;
+            border-color: #555;
+        }
+
+        .theme-toggle img {
+            width: 24px;
+            height: 24px;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 15px 0;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .dark-mode nav {
+            background-color: #2d2d2d;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: bold;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .dark-mode nav a {
+            color: #e0e0e0;
+        }
+
+        nav a:hover {
+            color: #4a00e0;
+        }
+
+        section {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in;
+        }
+
+        .dark-mode section {
+            background: #2d2d2d;
+        }
+
+        section h2 {
+            font-size: 2em;
+            color: #4a00e0;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #00c4b4;
+            display: inline-block;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #00c4b4;
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 10px;
+            width: 16px;
+            height: 16px;
+            background: #4a00e0;
+            border-radius: 50%;
+        }
+
+        .experience-item h3, .education-item h3, .project-item h3 {
+            font-size: 1.4em;
+            color: #2d2d2d;
+        }
+
+        .dark-mode .experience-item h3, .dark-mode .education-item h3, .dark-mode .project-item h3 {
+            color: #e0e0e0;
+        }
+
+        .experience-item p, .education-item p, .project-item p {
+            color: #666;
+        }
+
+        .dark-mode .experience-item p, .dark-mode .education-item p, .dark-mode .project-item p {
+            color: #b0b0b0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .project-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 200;
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .dark-mode .modal-content {
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .dark-mode .close-btn {
+            color: #e0e0e0;
+        }
+
+        .skill-filter {
+            margin-bottom: 20px;
+        }
+
+        .skill-filter button {
+            padding: 8px 15px;
+            margin-right: 10px;
+            background-color: #00c4b4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .skill-filter button:hover {
+            background-color: #009b94;
+        }
+
+        .skill-filter button.active {
+            background-color: #4a00e0;
+        }
+
+        .skill-progress {
+            margin: 10px 0;
+            display: none;
+        }
+
+        .skill-progress.show {
+            display: block;
+        }
+
+        .skill-progress label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+        }
+
+        .dark-mode .progress-bar {
+            background-color: #444;
+        }
+
+        .progress {
+            background: linear-gradient(135deg, #4a00e0, #00c4b4);
+            height: 100%;
+            transition: width 1s ease-in-out;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        .dark-mode .contact-form input, .dark-mode .contact-form textarea {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #ff4b5c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #e03c4d;
+        }
+
+        .form-message {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .testimonial-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .dark-mode .testimonial-item {
+            background: #333;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff4b5c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: none;
+        }
+
+        .back-to-top:hover {
+            background-color: #e03c4d;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #4a00e0, #00c4b4);
+            color: white;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        @media print {
+            .theme-toggle, nav, .download-btn, .print-btn, .contact-form, .back-to-top {
+                display: none;
+            }
+            section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <img src="https://img.icons8.com/ios-filled/24/000000/sun.png" alt="Toggle Theme" id="theme-icon">
+    </div>
+    <div class="container">
+        <header>
+            <h1>Mukkamalla Hemanth Reddy</h1>
+            <p>Computer Science Engineer | Specializing in Artificial Intelligence and Full-Stack Web Development</p>
+            <a href="hemanth_cv_new.pdf" class="download-btn" onclick="incrementDownloadCount()">Download Resume (PDF)</a>
+            <a href="#" class="print-btn" onclick="window.print()">Print Resume</a>
+            <p class="download-count">Downloads: <span id="download-count">0</span></p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am a driven Computer Science Engineering student at Audisankara College, specializing in artificial intelligence and full-stack web development. With hands-on experience in developing AI-driven attendance systems and real-time tracking applications, I leverage my expertise in Python, JavaScript, and modern web technologies to deliver innovative, scalable solutions.</p>
+        </section>
+
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                <div class="experience-item">
+                    <h3>Artificial Intelligence Intern - Edunet (AICTE)</h3>
+                    <p>Nov 2024 - Dec 2024</p>
+                    <p>Designed and developed an AI-based Attendance Management System using facial recognition for real-time, automated attendance tracking.</p>
+                    <p>Applied Python, OpenCV, and machine learning techniques to enhance recognition accuracy and reduce false positives.</p>
+                    <p>Trained and fine-tuned facial recognition models to improve performance across diverse lighting and facial variation conditions.</p>
+                    <p>Improved system security and reliability by integrating face detection, preprocessing, and real-time camera input handling.</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Intern / Project Trainee - VALUE LADEN</h3>
+                    <p>Jan 2024 - Feb 2024</p>
+                    <p>Developed a real-time College Bus Tracking System with a user-friendly interface for students and staff.</p>
+                    <p>Integrated GPS-based tracking to display live bus locations on an interactive map.</p>
+                    <p>Ensured cross-platform compatibility and responsive design for optimal mobile and desktop use.</p>
+                    <p>Improved commuter experience by reducing waiting time and enhancing route visibility.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="portfolio-grid">
+                <div class="project-item" onclick="openModal('attendance')">
+                    <img src="https://via.placeholder.com/300x200?text=Attendance+System" alt="Student Attendance System">
+                    <div class="project-overlay">
+                        <h3>Student Attendance System</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="attendance" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal('attendance')">×</span>
+                    <h3>Student Attendance Management System</h3>
+                    <p>Personal Project / Web Development & Automation</p>
+                    <p>Developed an automated web-based attendance system to reduce manual tracking errors and save time.</p>
+                    <p>Implemented real-time data updates, allowing teachers and staff instant access to attendance records.</p>
+                    <p>Designed a user-friendly interface for easy navigation by both administrators and students.</p>
+                    <p>Created detailed attendance reports for effective monitoring and analysis.</p>
+                    <p><a href="https://github.com/hemanthreddy/attendance-system" target="_blank">View Code on GitHub</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>B.Tech in Computer Science - Audisankara College</h3>
+                <p>2022 - Present</p>
+                <p>CGPA: 7.69/10</p>
+            </div>
+            <div class="education-item">
+                <h3>Class 12th - Board of Intermediate Education</h3>
+                <p>2021 - 2022</p>
+                <p>Marks: 577/1000</p>
+            </div>
+            <div class="education-item">
+                <h3>Class 10th - Secondary School of Education</h3>
+                <p>2019 - 2020</p>
+                <p>Marks: 519/600</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skill-filter">
+                <button onclick="filterSkills('all')" class="active">All</button>
+                <button onclick="filterSkills('programming')">Programming</button>
+                <button onclick="filterSkills('frontend')">Front-end</button>
+                <button onclick="filterSkills('databases')">Databases</button>
+                <button onclick="filterSkills('courses')">Courses</button>
+            </div>
+            <div class="skills-list">
+                <div class="skill-progress programming show">
+                    <label>Python</label>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-progress programming show">
+                    <label>C++</label>
+                    <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+                </div>
+                <div class="skill-progress programming show">
+                    <label>Java</label>
+                    <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+                </div>
+                <div class="skill-progress programming show">
+                    <label>SQL</label>
+                    <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+                </div>
+                <div class="skill-progress frontend show">
+                    <label>HTML</label>
+                    <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-progress frontend show">
+                    <label>CSS</label>
+                    <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-progress frontend show">
+                    <label>JavaScript</label>
+                    <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-progress databases show">
+                    <label>RDBMS</label>
+                    <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+                </div>
+                <div class="skill-progress databases show">
+                    <label>MongoDB</label>
+                    <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
+                </div>
+                <div class="skill-progress courses show">
+                    <label>Operating Systems</label>
+                    <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+                </div>
+                <div class="skill-progress courses show">
+                    <label>Computer Networks</label>
+                    <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+                </div>
+                <div class="skill-progress courses show">
+                    <label>Data Structures and Algorithms</label>
+                    <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+                </div>
+                <div class="skill-progress courses show">
+                    <label>DBMS</label>
+                    <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+                </div>
+                <div class="skill-progress courses show">
+                    <label>Excel</label>
+                    <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <h2>Testimonials</h2>
+            <div class="testimonial-item">
+                <p>"Hemanth demonstrated exceptional skill in developing our AI-based attendance system, showcasing both technical expertise and creativity." - Project Mentor, Edunet</p>
+            </div>
+            <div class="testimonial-item">
+                <p>"His work on the College Bus Tracking System was highly impactful, improving user experience significantly." - Supervisor, VALUE LADEN</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>Phone: <a href="tel:+919347591702">+91 9347591702</a></p>
+                <p>Email: <a href="mailto:hemanth.reddy@example.com">hemanth.reddy@example.com</a></p>
+                <p>LinkedIn: <a href="https://linkedin.com/in/hemanthreddy" target="_blank">linkedin.com/in/hemanthreddy</a></p>
+                <p>GitHub: <a href="https://github.com/hemanthreddy" target="_blank">github.com/hemanthreddy</a></p>
+            </div>
+            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" id="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+                <div class="form-message" id="form-message"></div>
+            </form>
+        </section>
+
+        <footer>
+            <p>© 2025 Mukkamalla Hemanth Reddy. All rights reserved.</p>
+        </footer>
+    </div>
+    <a href="#" class="back-to-top" id="back-to-top">↑</a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href');
+                document.querySelector(sectionId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Modal functionality
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Dark mode toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.getElementById('theme-icon');
+            icon.src = document.body.classList.contains('dark-mode') 
+                ? 'https://img.icons8.com/ios-filled/24/ffffff/moon-symbol.png' 
+                : 'https://img.icons8.com/ios-filled/24/000000/sun.png';
+        }
+
+        // Back-to-top button visibility
+        window.onscroll = function() {
+            const backToTop = document.getElementById('back-to-top');
+            backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+        };
+
+        // Download counter
+        let downloadCount = localStorage.getItem('downloadCount') || 0;
+        document.getElementById('download-count').textContent = downloadCount;
+        function incrementDownloadCount() {
+            downloadCount++;
+            localStorage.setItem('downloadCount', downloadCount);
+            document.getElementById('download-count').textContent = downloadCount;
+        }
+
+        // Skill filter
+        function filterSkills(category) {
+            document.querySelectorAll('.skill-progress').forEach(skill => {
+                skill.classList.remove('show');
+                if (category === 'all' || skill.classList.contains(category)) {
+                    skill.classList.add('show');
+                }
+            });
+            document.querySelectorAll('.skill-filter button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(category)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Contact form submission feedback
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const messageDiv = document.getElementById('form-message');
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    messageDiv.textContent = 'Message sent successfully!';
+                    messageDiv.className = 'form-message success';
+                    messageDiv.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => messageDiv.style.display = 'none', 3000);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            })
+            .catch(error => {
+                messageDiv.textContent = 'Error sending message. Please try again.';
+                messageDiv.className = 'form-message error';
+                messageDiv.style.display = 'block';
+                setTimeout(() => messageDiv.style.display = 'none', 3000);
+            });
+        });
+    </script>
+</body>
+</html>
